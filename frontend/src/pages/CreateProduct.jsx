@@ -18,7 +18,12 @@ export default function CreateProduct() {
   const submit = async (e) => {
     e.preventDefault();
 
-    await axios.post("http://localhost:3000/api/products", data, {
+    const payload = {
+      ...data,
+      imageUrl: data.imageUrl?.trim() ? data.imageUrl.trim() : "OlioEVO.png",
+    };
+
+    await axios.post("http://localhost:3000/api/products", payload, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -33,26 +38,31 @@ export default function CreateProduct() {
 
       <input
         placeholder="Nome"
+        value={data.name}
         onChange={(e) => setData({ ...data, name: e.target.value })}
       />
       <input
         placeholder="Descrizione"
+        value={data.description}
         onChange={(e) => setData({ ...data, description: e.target.value })}
       />
       <input
         placeholder="Metodo"
+        value={data.method}
         onChange={(e) => setData({ ...data, method: e.target.value })}
       />
       <input
         placeholder="Certificazione"
+        value={data.certification}
         onChange={(e) => setData({ ...data, certification: e.target.value })}
       />
       <input
-        placeholder="URL Immagine"
+        placeholder="Nome file immagine (es. OlioEVO.png)"
+        value={data.imageUrl}
         onChange={(e) => setData({ ...data, imageUrl: e.target.value })}
       />
 
-      <button>Crea prodotto</button>
+      <button type="submit">Crea prodotto</button>
     </form>
   );
 }

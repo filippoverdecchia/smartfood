@@ -13,7 +13,9 @@ export default function Navbar() {
       borderBottom: "1px solid #ccc",
       marginBottom: "20px"
     }}>
-      <Link to="/">Home</Link>
+      <Link to="/" style={{ fontWeight: "bold" }}>
+        🏠 Home
+      </Link>
       <Link to="/products">Prodotti</Link>
 
       {!token && (
